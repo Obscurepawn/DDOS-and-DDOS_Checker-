@@ -2,19 +2,19 @@ from scapy.all import *
 import math
 import dos
 
-packetsNum = 5000
+packetsNum = 20000
 #Qualcomm Atheros QCA61x4A Wireless Network Adapter 为被攻击主机的使用的网卡名称，
 #请自行更换成自己的网卡名称，更换方法详见“补充说明.docx”
 dpkt = sniff(
-    iface="Qualcomm Atheros QCA61x4A Wireless Network Adapter", count=packetsNum)
+    iface="Intel(R) Wireless-AC 9560", count=packetsNum)
 srcList = []
 destList = []
 dportList = []
 
 #正常情况下的4维信息熵
-ddosMeasure = [3.7042427792511807, 3.101864313987882, 0.6873200389350417, 24.31558837425727]
+ddosMeasure = [2.091154045738553, 2.6076939235952774, 0.13734613593233316, 110.26922852894181]
 #ddos攻击情况下的4维信息熵
-normalMeasure = [0.8384563842561118, 0.0, 1.3653685644648292, 3.616327702776094]
+normalMeasure = [0.987790154297725, -0.0, 1.0894159936438503, 15.643334650142524]
 #以上数据为我对自身电脑在遭受ddos攻击和正常上网的情况下收集的多次4维信息熵的平均向量
 #建议使用者在自身电脑上重新测试设置该常数向量，具体方法可见 补充说明.docx
 
